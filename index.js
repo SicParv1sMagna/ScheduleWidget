@@ -296,4 +296,3 @@ const getScheduleForCurrentDay = () => {
 const renderWidget = () => {
 
 };
-console.log(getScheduleForCurrentDay())
