@@ -293,6 +293,50 @@ const getScheduleForCurrentDay = () => {
     }
 }
 
-const renderWidget = () => {
+const renderWidget = async () => {
+    const widget = new ListWidget();
 
+    const { day, weekNumber, type, currentSchedule } = getScheduleForCurrentDay();
+
+    const headerStack = widget.addStack();
+    const weekTypeText = headerStack.addText(`Неделя ${weekNumber} - ${type}`);
+    weekTypeText.font = Font.boldSystemFont(14);
+    weekTypeText.textColor = Color.white();
+    widget.addSpacer(5);
+
+    const tableStack = widget.addStack();
+    const table = tableStack.addStack();
+    table.layoutVertically();
+
+    const scheduleKeys = Object.keys(currentSchedule.lectures);
+    scheduleKeys.forEach(key => {
+        const lecture = currentSchedule.lectures[key];
+        const rowStack = table.addStack();
+        rowStack.spacing = 5;
+
+        const timeText = rowStack.addText(key);
+        timeText.font = Font.systemFont(12);
+        timeText.textColor = Color.white();
+        
+        let disciplineName = lecture.discipline.length > 20 ? lecture.discipline.slice(0, 17) + "..." : lecture.discipline;
+        const disciplineText = rowStack.addText(disciplineName);
+        disciplineText.font = Font.systemFont(12);
+        disciplineText.textColor = Color.white();
+        
+        const classroomText = rowStack.addText(lecture.classroom ? lecture.classroom : " ");
+        classroomText.font = Font.systemFont(12);
+        classroomText.textColor = Color.white();
+    });
+
+    widget.backgroundColor = new Color("#1e1e1e");
+    
+    widget.addSpacer(5);
+
+    if (config.runsInWidget) {
+        Script.setWidget(widget);
+    } else {
+        widget.presentSmall();
+    }
 };
+
+await renderWidget();
