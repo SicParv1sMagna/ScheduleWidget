@@ -1,6 +1,6 @@
 {
   "name": "schedulewidget",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Schedule widget for tracking lectures in university",
   "main": "index.js",
   "scripts": {
