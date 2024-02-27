@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SicParv1sMagna/ScheduleWidget/issues"
   },
-  "homepage": "https://github.com/SicParv1sMagna/ScheduleWidget#readme"
+  "homepage": "https://github.com/SicParv1sMagna/ScheduleWidget#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
